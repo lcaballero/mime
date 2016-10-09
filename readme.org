@@ -1,0 +1,18 @@
+* Overview
+
+  This lib parses a file containing a loosely separated list of pairs.
+  The pairs are those of mime-types to file extensions.
+
+* Usage
+
+#+BEGIN_SRC go
+
+bin, _ := ioutil.ReadFile(".file/mime-types.txt")
+r := bytes.NewReader(bin)
+
+lookup, _ := mime.ParseExtensionsLookup(r)
+mimeType, ok := lookup["jpeg"]
+
+// mimeType == 'image/jpeg' typically at this point
+
+#+END_SRC

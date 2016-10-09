@@ -1,0 +1,3 @@
+types {
+    audio/midi                            mid midi kar;
+}

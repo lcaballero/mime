@@ -1,0 +1,4 @@
+types {
+    # no value
+    application/atom+xml
+}
