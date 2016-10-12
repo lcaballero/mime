@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io"
 	"strings"
+	"os"
 )
 
 // MimeTypes is mapping from the mime-type to file extensions.
@@ -12,6 +13,26 @@ type MimeTypes map[string][]string
 
 // ExtensionToType maps the extension to its mime-type.
 type ExtensionToType map[string]string
+
+// LoadMimeTypes reads the given file to produce a map of extensions
+// to the mime-types appropriate for html content-type headers.
+func LoadMimeTypes(filename string) (ExtensionToType, error) {
+	info, err := os.Stat(filename)
+	if os.IsNotExist(err) {
+		return nil, err
+	}
+	if info.IsDir() {
+		return nil, fmt.Errorf("mime-type filename is directory")
+	}
+	f, err := os.Open(filename)
+	if err != nil {
+		return nil, err
+	}
+	defer f.Close()
+
+	ext, err := ParseExtensionLookup(f)
+	return ext, err
+}
 
 // ParseExtensionLookup parses over the given reader producing
 // an extension to mime-type lookup.  An error is produced
