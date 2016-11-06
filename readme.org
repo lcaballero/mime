@@ -1,3 +1,14 @@
+#+BEGIN_HTML
+<img src="https://goreportcard.com/badge/github.com/lcaballero/mime" 
+     tag="https://goreportcard.com/badge/github.com/lcaballero/mime" />
+
+<a href="https://godoc.org/github.com/lcaballero/mime">
+   <img src="https://godoc.org/github.com/lcaballero/mime?status.svg" alt="GoDoc"/>
+</a>
+
+<img src="https://travis-ci.org/lcaballero/mime.svg?branch=master"/>
+#+END_HTML
+
 * Overview
 
   This lib parses a file containing a loosely separated list of pairs.
