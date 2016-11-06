@@ -14,10 +14,21 @@
   This lib parses a file containing a loosely separated list of pairs.
   The pairs are those of mime-types to file extensions.
 
-* Usage
+** Usage
+
+*** Installation
 
 #+BEGIN_SRC go
+go get github.com/lcaballero/mime
+#+END_SRC
 
+*** Example Usage
+
+After making a copy of mime-types.txt for your project and placing it
+in a directory named `.file` the following code would parse the file
+and make a map of extensions to mime-type.
+
+#+BEGIN_SRC go
 bin, _ := ioutil.ReadFile(".file/mime-types.txt")
 r := bytes.NewReader(bin)
 
@@ -25,5 +36,17 @@ lookup, _ := mime.ParseExtensionsLookup(r)
 mimeType, ok := lookup["jpeg"]
 
 // mimeType == 'image/jpeg' typically at this point
-
 #+END_SRC
+
+** License
+
+See License File.
+
+The use and distribution terms for this software are covered by the
+[[http://opensource.org/licenses/eclipse-1.0.txt][Eclipse Public License 1.0]], which can be found in the file ‘license’
+at the root of this distribution. By using this software in any
+fashion, you are agreeing to be bound by the terms of this
+license. You must not remove this notice, or any other, from this
+software.
+
+
