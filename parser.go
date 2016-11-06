@@ -4,12 +4,12 @@ import (
 	"bufio"
 	"fmt"
 	"io"
-	"strings"
 	"os"
+	"strings"
 )
 
-// MimeTypes is mapping from the mime-type to file extensions.
-type MimeTypes map[string][]string
+// ToExtensions is mapping from the mime-type to file extensions.
+type ToExtensions map[string][]string
 
 // ExtensionToType maps the extension to its mime-type.
 type ExtensionToType map[string]string
@@ -55,7 +55,7 @@ func ParseExtensionLookup(reader io.Reader) (ExtensionToType, error) {
 // Parse parses over the given reader producing a map of mime-types
 // to file extensions for that type.  An error is produced when
 // the reader is nil or the file is malformed.
-func Parse(reader io.Reader) (MimeTypes, error) {
+func Parse(reader io.Reader) (ToExtensions, error) {
 	if reader == nil {
 		return nil, fmt.Errorf("cannot parse mimes given nil reader")
 	}
@@ -73,10 +73,11 @@ func isNonPair(line string) bool {
 		len(line) == 0
 }
 
-func parse(r *bufio.Reader, m MimeTypes) error {
+func parse(r *bufio.Reader, m ToExtensions) error {
 
-	var err error = nil
-	var line string = ""
+	var err error
+	var line string
+
 	n := 0
 
 	for err == nil {
@@ -106,7 +107,7 @@ func parse(r *bufio.Reader, m MimeTypes) error {
 	return nil
 }
 
-func parseExtensions(name, exts string, m MimeTypes) error {
+func parseExtensions(name, exts string, m ToExtensions) error {
 	if exts == "" {
 		return fmt.Errorf("cannot parse extension from empty string")
 	}

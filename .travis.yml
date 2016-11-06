@@ -1,0 +1,11 @@
+language: go
+
+go:
+   - 1.6
+
+install:
+- export PATH=$PATH:$HOME/gopath/bin
+- go get github.com/lcaballero/mime
+- go get github.com/lcaballero/exam
+
+script: cd $HOME/gopath/src/github.com/lcaballero/mime && go test --race ./...

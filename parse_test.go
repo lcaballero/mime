@@ -22,7 +22,7 @@ func Test_Parse_009(t *testing.T) {
 		"video/x-msvideo", "text/cache-manifest", "application/xml",
 	}
 
-	for _,name := range names {
+	for _, name := range names {
 		exts, ok := mimes[name]
 		IsTrue(t, ok)
 		if len(exts) == 0 {

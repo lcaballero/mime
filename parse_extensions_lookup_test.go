@@ -1,10 +1,10 @@
 package mime
 
 import (
-	"testing"
+	"bytes"
 	. "github.com/lcaballero/exam/assert"
 	"io/ioutil"
-	"bytes"
+	"testing"
 )
 
 func Test_ParseExtensionLookup_001(t *testing.T) {
@@ -23,7 +23,7 @@ func Test_ParseExtensionLookup_001(t *testing.T) {
 
 	set := make(map[string]struct{})
 
-	for _,name := range extensions {
+	for _, name := range extensions {
 		mime, ok := lookup[name]
 		IsTrue(t, ok)
 		GreaterThan(t, len(mime), 0)
@@ -32,4 +32,3 @@ func Test_ParseExtensionLookup_001(t *testing.T) {
 		set[name] = struct{}{}
 	}
 }
-
